@@ -1,9 +1,6 @@
 import pygame  # This imports the pygame functions
-import time  # This imports the time functions
 import random  # This imports the random functions
 import pygame.mixer  # This imports the pygame.mixer function
-import imageio  # Imports imageio, used for the easter egg
-
 
 from moviepy.editor import VideoFileClip  # Imports the VideoFileClip function
 
@@ -45,7 +42,7 @@ def text(msg, x, y, size, color):  # This function draws text/Joey
 
 
 def button(msg, x, y, w, h, ic, ac, action=None):  # This function creates the buttons/Joey
-    s_button = sounds.Sound("button.wav")  # This is a variable for the click sound
+    s_button = sounds.Sound("sound/button.wav")  # This is a variable for the click sound
     mouse = pygame.mouse.get_pos()  # This variable senses the position of the mouse
     click = pygame.mouse.get_pressed()  # This variable senses if the mouse is clicked
     if x + w > mouse[0] > x and y + h > mouse[
@@ -76,10 +73,10 @@ def button(msg, x, y, w, h, ic, ac, action=None):  # This function creates the b
 
 
 def game_intro():  # This is the function for the intro screen/Joey
-    pygame.mixer.music.load('opening.wav')
+    pygame.mixer.music.load('sound/opening.wav')
     pygame.mixer.music.play(-1)  # This plays the opening music
-    logo = pygame.image.load("supreme_logo.png")  # This loads the title
-    hanging_knuckles = pygame.image.load("sad.png")  # This loads the knuckles image
+    logo = pygame.image.load("image/supreme_logo.png")  # This loads the title
+    hanging_knuckles = pygame.image.load("image/sad.png")  # This loads the knuckles image
     while True:  # This is a loop
         for event in pygame.event.get():  # This senses the user's actions
             if event.type == pygame.QUIT:  # This quits pygame if the user closes the window
@@ -97,9 +94,9 @@ def game_intro():  # This is the function for the intro screen/Joey
 
 
 def game_select():  # This is the function for the difficulty screen/Richard
-    i_sleep = pygame.image.load("i_sleep.png")  # Different PNG of the difficulty settings
-    real = pygame.image.load("real.png")
-    power_of_god_and_anime = pygame.image.load("power_of_god_and_anime.png")
+    i_sleep = pygame.image.load("image/i_sleep.png")  # Different PNG of the difficulty settings
+    real = pygame.image.load("image/real.png")
+    power_of_god_and_anime = pygame.image.load("image/power_of_god_and_anime.png")
     while True:  # This is a loop
         for event in pygame.event.get():  # This senses the user's actions
             if event.type == pygame.QUIT:  # Quits the program if the player clicks 'exit'
@@ -120,7 +117,7 @@ def game_select():  # This is the function for the difficulty screen/Richard
 
 
 def option():  # Function for the options tab/Joey
-    knuckles = pygame.image.load("knuckles.png")  # PNG for the tab
+    knuckles = pygame.image.load("image/knuckles.png")  # PNG for the tab
     while True:  # Loop for the options menu
         for event in pygame.event.get():  # In case the user clicks off the program
             if event.type == pygame.QUIT:
@@ -136,9 +133,9 @@ def option():  # Function for the options tab/Joey
 
 
 def death_screen(t, s):  # death screen function/Devin
-    pygame.mixer.music.load('lose_music.wav')  # loads the following wav file
+    pygame.mixer.music.load('sound/lose_music.wav')  # loads the following wav file
     pygame.mixer.music.play(-1)  # plays the wav file in a loop
-    lost_image = pygame.image.load("lost_image.png")  # death image
+    lost_image = pygame.image.load("image/lost_image.png")  # death image
     while True:
         for event in pygame.event.get():  # if the user X's out, then the program quits
             if event.type == pygame.QUIT:
@@ -159,7 +156,7 @@ def death_screen(t, s):  # death screen function/Devin
 
 
 def end_screen(t, s):  # end screen function/Richard
-    winning = pygame.image.load("winning.png")  # loads the following image
+    winning = pygame.image.load("image/winning.png")  # loads the following image
     while True:
         for event in pygame.event.get():  # if user X's out, then the program quits
             if event.type == pygame.QUIT:
@@ -202,7 +199,7 @@ def man(x, y):  # This is a function that draws the body parts of the hangman/De
 
 
 def gameloop(difficulty):  # This is the main gameloop
-    pygame.mixer.music.load('wii.mp3')  # This plays the MP3 wii music/Joey
+    pygame.mixer.music.load('sound/wii.mp3')  # This plays the MP3 wii music/Joey
     pygame.mixer.music.play(-1)
     if difficulty == "eazy":  # if the difficulty selected is "eazy"/Richard
         words = (list('s t r i n g'), list('p l a n e t'), list('r a n d o m'), list('v e c t o r'),
@@ -314,7 +311,7 @@ def gameloop(difficulty):  # This is the main gameloop
             death_screen(time, attempts)  # Displays the game over screen
 
         if NANI == True:  # Easter Egg #If the player enters the easter egg, this statement becomes true/Richard
-            clip = VideoFileClip('movie.mp4')  # Plays the easter egg video
+            clip = VideoFileClip('sound/movie.mp4')  # Plays the easter egg video
             clip.preview()  # Runs the video
             end_screen(time, attempts)  # The game then directly goes to the winning screen
         pygame.display.update()  # Updates the window
@@ -323,5 +320,3 @@ def gameloop(difficulty):  # This is the main gameloop
 
 if __name__ == '__main__':
     game_intro()  # The program initiates the game
-
-
